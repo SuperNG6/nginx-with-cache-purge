@@ -147,8 +147,6 @@ COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
 EXPOSE 80
 
-VOLUME /etc/nginx
-
 STOPSIGNAL SIGTERM
 
 CMD ["nginx", "-g", "daemon off;"]
