@@ -1,10 +1,10 @@
-FROM debian:jessie
+FROM debian:buster-slim
 
 # Forked from:
 # MAINTAINER Real Geeks "kevin@realgeeks.com"
-MAINTAINER Eric McNiece "hello@emc2innovation.com"
+LABEL maintainer="NG6"
 
-ENV NGINX_VERSION=1.13.1
+ENV NGINX_VERSION=1.18.0
 ENV NGX_CACHE_PURGE_VERSION=2.3
 
 # Install basic packages and build tools
@@ -51,7 +51,7 @@ RUN mv /usr/local/nginx/html /var/www && \
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log
 
-VOLUME ["/var/cache/nginx"]
+VOLUME /var/cache/nginx /etc/nginx
 
 EXPOSE 80 443
 
