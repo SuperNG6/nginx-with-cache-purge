@@ -143,10 +143,11 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
+COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
 EXPOSE 80
 
-VOLUME [ "/etc/nginx" ]
+VOLUME /etc/nginx
 
 STOPSIGNAL SIGTERM
 
