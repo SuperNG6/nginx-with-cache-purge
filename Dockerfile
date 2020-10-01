@@ -141,8 +141,6 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
-RUN addgroup -S www-data \
-&&  adduser -D -S -h /tmp/wpached -s /sbin/nologin -G www-data www-data
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
 COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
