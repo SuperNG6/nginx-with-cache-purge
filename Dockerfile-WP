@@ -2,8 +2,13 @@ FROM superng6/nginx-with-cache-purge:latest
 
 LABEL maintainer="NG6"
 
-RUN addgroup -S www-data \
-&&  adduser -D -S -h /var/www/html -s /sbin/nologin -G www-data www-data
+RUN apk add --no-cache shadow \
+&&  usermod -u 532 xfs \
+&&  groupmod -g 523 xfs \
+&&  addgroup -S www-data \
+&&  adduser -D -S -h /var/www/html -s /sbin/nologin -G www-data www-data \
+&&  usermod -u 33 www-data \
+&&  groupmod -g 33 www-data
 
 COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 COPY nginx-wp.conf /etc/nginx/nginx.conf
