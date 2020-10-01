@@ -55,8 +55,9 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
         --add-module=/usr/src/ngx_cache_purge \
     " \
     && addgroup -S nginx \
+    && addgroup -S www-data \
+    && adduser -g www-data www-data \
     && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
-    && \
     && apk add --no-cache --virtual .build-deps \
         gcc \
         libc-dev \
