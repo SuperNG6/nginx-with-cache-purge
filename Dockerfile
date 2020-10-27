@@ -53,6 +53,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
         --with-file-aio \
         --with-http_v2_module \
         --add-module=/usr/src/ngx_cache_purge \
+        --add-module=/usr/src/ngx_brotli \
     " \
     && addgroup -S nginx \
     && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
@@ -60,6 +61,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
         gcc \
         libc-dev \
         make \
+        git \
         openssl-dev \
         pcre-dev \
         zlib-dev \
@@ -71,6 +73,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
         geoip-dev \
     && curl -fSL http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
     && curl -fSL http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz.asc  -o nginx.tar.gz.asc \
+    && git clone https://github.com/google/ngx_brotli.git /usr/src/ngx_brotli \
     && curl -fSL http://labs.frickle.com/files/ngx_cache_purge-$NGX_CACHE_PURGE_VERSION.tar.gz -o ngx_cache_purge.tar.gz \
     && export GNUPGHOME="$(mktemp -d)" \
     && found=''; \
